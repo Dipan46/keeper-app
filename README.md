@@ -21,8 +21,6 @@ src/
 │   ├── Header.jsx       # App header
 │   ├── Footer.jsx       # App footer
 │   ├── Note.jsx         # Individual note component
-│   ├── Input.jsx        # Title input field
-│   └── Textarea.jsx     # Content input field
 ```
 
 ## 🛠️ Tech Stack
