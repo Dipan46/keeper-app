@@ -14,8 +14,7 @@ function App() {
         });
     }
 
-    function handleSubmit(e, id) {
-        e.preventDefault();
+    function handleSubmit(id) {
         setNotes(
             notes.filter((_, idx) => {
                 return idx != id;
