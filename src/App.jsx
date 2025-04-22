@@ -33,7 +33,7 @@ function App() {
                         key={idx}
                         id={idx}
                         title={itm.title}
-                        content={itm.title}
+                        content={itm.content}
                         onSub={handleSubmit}
                     />
                 );
