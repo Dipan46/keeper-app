@@ -1,26 +1,42 @@
-// CreateArea.jsx
-import React from "react";
-import Input from "./Input";
-import Textarea from "./Textarea";
+import { useState } from "react";
 
 function CreateArea(props) {
+    const [note, setNote] = useState({
+        title: "",
+        content: "",
+    });
+
+    function handleChange(e) {
+        const { name, value } = e.target;
+
+        setNote((prev) => {
+            return {
+                ...prev,
+                [name]: value,
+            };
+        });
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        props.onAdd(note);
+    }
+
     return (
         <div>
-            <form onSubmit={props.onSubmit}>
-                <Input
+            <form>
+                <input
+                    onChange={handleChange}
                     name="title"
                     placeholder="Title"
-                    value={props.note.title}
-                    onChange={props.onChange}
                 />
-                <Textarea
-                    name="note"
+                <textarea
+                    onChange={handleChange}
+                    name="content"
                     placeholder="Take a note..."
                     rows="3"
-                    value={props.note.note}
-                    onChange={props.onChange}
                 />
-                <button type="submit">Add</button>
+                <button onClick={handleSubmit}>Add</button>
             </form>
         </div>
     );

@@ -1,62 +1,44 @@
 import "./App.css";
-import { useState } from "react";
 import Note from "./assets/Note";
 import Header from "./assets/Header";
 import Footer from "./assets/Footer";
+import React, { useState } from "react";
 import CreateArea from "./assets/CreateArea";
 
 function App() {
-    const year = new Date().getFullYear();
+    const [notes, setNotes] = useState([]);
 
-    const [note, setNote] = useState({
-        title: "",
-        note: "",
-    });
-
-    const [notesList, setNotesList] = useState([]);
-
-    function handleChange(e) {
-        const { name, value } = e.target;
-        setNote((prev) => ({
-            ...prev,
-            [name]: value,
-        }));
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        if (note.title || note.note) {
-            setNotesList((prev) => [...prev, note]);
-            setNote({ title: "", note: "" });
-        }
-    }
-
-    function handleDelete(id) {
-        setNotesList((prev) => {
-            return prev.filter((value, index) => {
-                return index != id;
-            })
+    function addNote(newNote) {
+        setNotes((prev) => {
+            return [...prev, newNote];
         });
+    }
+
+    function handleSubmit(e, id) {
+        e.preventDefault();
+        setNotes(
+            notes.filter((_, idx) => {
+                return idx != id;
+            })
+        );
     }
 
     return (
         <div>
             <Header />
-            <CreateArea
-                note={note}
-                onChange={handleChange}
-                onSubmit={handleSubmit}
-            />
-            {notesList.map((value, index) => (
-                <Note
-                    key={index}
-                    id={index}
-                    title={value.title}
-                    content={value.note}
-                    onDelete={handleDelete}
-                />
-            ))}
-            <Footer year={year} />
+            <CreateArea onAdd={addNote} />
+            {notes.map((itm, idx) => {
+                return (
+                    <Note
+                        key={idx}
+                        id={idx}
+                        title={itm.title}
+                        content={itm.title}
+                        onSub={handleSubmit}
+                    />
+                );
+            })}
+            <Footer />
         </div>
     );
 }
