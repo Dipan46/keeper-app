@@ -2,6 +2,10 @@
 
 A simple note-taking app built with React. Users can add and delete notes in a clean and minimal UI.
 
+---
+## 🔍 Preview
+- Live - https://dipan46.github.io/keeper-app/
+
 ## 🚀 Features
 
 - Add notes with a title and content
